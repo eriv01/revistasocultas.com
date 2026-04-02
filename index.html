@@ -708,42 +708,44 @@
   /* ── TICKER X / EDITORAS ── */
   .ticker-x-wrap {
     position: relative;
-    width: 100%;
-    height: 110px;
-    margin-top: 36px;
-    overflow: hidden;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 130px;
+    margin-top: 40px;
     z-index: 1;
     pointer-events: none;
+    flex-shrink: 0;
+    overflow: visible;
   }
 
   /* faixa diagonal base */
   .ticker-band {
     position: absolute;
-    left: -20%;
-    width: 140%;
-    padding: 10px 0;
+    left: -60%;
+    width: 220%;
+    padding: 9px 0;
     display: flex;
     overflow: hidden;
     white-space: nowrap;
+    background: transparent;
   }
 
-  /* faixa 1: desce da esquerda para direita (/ → \) */
+  /* faixa 1: \ */
   .ticker-band-1 {
-    top: 12px;
-    transform: rotate(-12deg);
-    background: var(--accent);
-    border-top: 1px solid rgba(255,255,255,.15);
-    border-bottom: 1px solid rgba(255,255,255,.15);
+    top: 28px;
+    transform: rotate(-10deg);
+    border-top: 1px solid rgba(201,24,58,.4);
+    border-bottom: 1px solid rgba(201,24,58,.4);
     z-index: 2;
   }
 
-  /* faixa 2: sobe da esquerda para direita (\ → /) */
+  /* faixa 2: / */
   .ticker-band-2 {
-    top: 36px;
-    transform: rotate(12deg);
-    background: rgba(201,24,58,.85);
-    border-top: 1px solid rgba(255,255,255,.1);
-    border-bottom: 1px solid rgba(255,255,255,.1);
+    top: 62px;
+    transform: rotate(10deg);
+    border-top: 1px solid rgba(201,24,58,.25);
+    border-bottom: 1px solid rgba(201,24,58,.25);
     z-index: 1;
   }
 
@@ -754,11 +756,11 @@
   }
 
   .ticker-band-1 .ticker-track {
-    animation: ticker-scroll 18s linear infinite;
+    animation: ticker-scroll 20s linear infinite;
   }
 
   .ticker-band-2 .ticker-track {
-    animation: ticker-scroll-rev 22s linear infinite;
+    animation: ticker-scroll-rev 24s linear infinite;
   }
 
   @keyframes ticker-scroll {
@@ -775,68 +777,28 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 0 20px;
+    padding: 0 22px;
     white-space: nowrap;
     flex-shrink: 0;
   }
 
-  .ticker-item .t-icon { font-size: 15px; }
+  .ticker-item .t-icon { font-size: 14px; }
 
   .ticker-item .t-name {
     font-family: 'DM Sans', sans-serif;
-    font-size: .78rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 2px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #c4adb3;
+    letter-spacing: 3px;
     text-transform: uppercase;
   }
 
   .ticker-item .t-sep {
-    color: rgba(255,255,255,.4);
+    color: rgba(201,24,58,.5);
     font-size: 10px;
     padding-left: 8px;
   }
 
-  .ticker-track {
-    display: flex;
-    width: max-content;
-    animation: ticker-scroll 28s linear infinite;
-  }
-
-  .ticker-track:hover { animation-play-state: paused; }
-
-  @keyframes ticker-scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .ticker-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 32px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .ticker-item .t-icon {
-    font-size: 18px;
-  }
-
-  .ticker-item .t-name {
-    font-family: 'Playfair Display', serif;
-    font-size: .8rem;
-    font-weight: 700;
-    color: #c4adb3;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .ticker-item .t-sep {
-    color: rgba(201,24,58,.4);
-    font-size: 18px;
-    padding-left: 16px;
-  }
 
   /* ── FAQ ── */
   .faq-section {
@@ -977,38 +939,46 @@
     <!-- Faixa 1: inclinada para baixo (esq→dir) -->
     <div class="ticker-band ticker-band-1">
       <div class="ticker-track">
-        <div class="ticker-item"><span class="t-icon">📖</span><span class="t-name">Vogue Adulta</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🔥</span><span class="t-name">Noir Edition</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">💋</span><span class="t-name">Rouge Press</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">💎</span><span class="t-name">Velvet Club</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🌹</span><span class="t-name">Caliente Mag</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🖤</span><span class="t-name">Dark Luxe</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">Playboy</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">PRIVATE</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">VIP</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">SWING</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">Playboy</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">PRIVATE</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">VIP</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">SWING</span><span class="t-sep">✦</span></div>
         <!-- duplicata -->
-        <div class="ticker-item"><span class="t-icon">📖</span><span class="t-name">Vogue Adulta</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🔥</span><span class="t-name">Noir Edition</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">💋</span><span class="t-name">Rouge Press</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">💎</span><span class="t-name">Velvet Club</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🌹</span><span class="t-name">Caliente Mag</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🖤</span><span class="t-name">Dark Luxe</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">Playboy</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">PRIVATE</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">VIP</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">SWING</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">Playboy</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">PRIVATE</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">VIP</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">SWING</span><span class="t-sep">✦</span></div>
       </div>
     </div>
 
     <!-- Faixa 2: inclinada para cima (esq→dir) — direção reversa -->
     <div class="ticker-band ticker-band-2">
       <div class="ticker-track">
-        <div class="ticker-item"><span class="t-icon">🍒</span><span class="t-name">Cherry Print</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🌙</span><span class="t-name">Midnight Rev.</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🔞</span><span class="t-name">Proibida Mag</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🌸</span><span class="t-name">Fleur Noire</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🕯️</span><span class="t-name">Scarlet Rev.</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🔮</span><span class="t-name">Desire Press</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">BABY FACE</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">LOSLYF</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">LUI</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">SEXY</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">BABY FACE</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">LOSLYF</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">LUI</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">SEXY</span><span class="t-sep">✦</span></div>
         <!-- duplicata -->
-        <div class="ticker-item"><span class="t-icon">🍒</span><span class="t-name">Cherry Print</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🌙</span><span class="t-name">Midnight Rev.</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🔞</span><span class="t-name">Proibida Mag</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🌸</span><span class="t-name">Fleur Noire</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🕯️</span><span class="t-name">Scarlet Rev.</span><span class="t-sep">✦</span></div>
-        <div class="ticker-item"><span class="t-icon">🔮</span><span class="t-name">Desire Press</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">BABY FACE</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">LOSLYF</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">LUI</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">SEXY</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">BABY FACE</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">LOSLYF</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">LUI</span><span class="t-sep">✦</span></div>
+        <div class="ticker-item"><span class="t-name">SEXY</span><span class="t-sep">✦</span></div>
       </div>
     </div>
 
