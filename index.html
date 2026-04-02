@@ -800,6 +800,30 @@
   }
 
 
+  /* ── SCARCITY ── */
+  .scarcity-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,.06);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .scarcity-fill {
+    height: 100%;
+    width: 23%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 99px;
+  }
+
+  .scarcity-txt {
+    font-size: .72rem;
+    color: var(--muted);
+    margin-bottom: 22px;
+    letter-spacing: .3px;
+  }
+
   /* ── FAQ ── */
   .faq-section {
     background: var(--bg2);
@@ -1122,33 +1146,33 @@
     <p class="section-sub">Só quem comprar hoje recebe esses bônus. Oferta por tempo limitado.</p>
 
     <div class="bonus-card">
-      <div class="bonus-num">🎁</div>
+      <div class="bonus-num">📖</div>
       <div class="bonus-info">
         <div class="bonus-tag">Bônus 01</div>
-        <h4>Título do Bônus Aqui</h4>
-        <p>Descrição curta do que é esse bônus e o valor que entrega.</p>
+        <h4>Guia das Poses Esquecidas</h4>
+        <p>E-book com os editoriais e poses mais icônicos das revistas de época que nunca foram replicados.</p>
       </div>
-      <div class="bonus-val">R$XX</div>
+      <div class="bonus-val">R$27</div>
     </div>
 
     <div class="bonus-card">
-      <div class="bonus-num">🔥</div>
+      <div class="bonus-num">🎬</div>
       <div class="bonus-info">
         <div class="bonus-tag">Bônus 02</div>
-        <h4>Título do Bônus Aqui</h4>
-        <p>Descrição curta do que é esse bônus e o valor que entrega.</p>
+        <h4>Bastidores Proibidos</h4>
+        <p>PDF com making-of e histórias das sessões que foram censuradas — o que aconteceu antes do clique.</p>
       </div>
-      <div class="bonus-val">R$XX</div>
+      <div class="bonus-val">R$37</div>
     </div>
 
     <div class="bonus-card">
-      <div class="bonus-num">💎</div>
+      <div class="bonus-num">👑</div>
       <div class="bonus-info">
         <div class="bonus-tag">Bônus 03</div>
-        <h4>Título do Bônus Aqui</h4>
-        <p>Descrição curta do que é esse bônus e o valor que entrega.</p>
+        <h4>Acesso VIP Colecionador</h4>
+        <p>Entrada no grupo exclusivo onde novas edições raras são lançadas — lista prioritária de sempre.</p>
       </div>
-      <div class="bonus-val">R$XX</div>
+      <div class="bonus-val">R$47</div>
     </div>
   </div>
 </section>
@@ -1166,23 +1190,30 @@
       <div class="offer-ribbon">Oferta</div>
 
       <div class="offer-title">Pack Coleção Proibida</div>
-      <div class="offer-sub">+ todos os bônus exclusivos</div>
+      <div class="offer-sub">+ 3 bônus exclusivos incluídos</div>
 
-      <div class="price-old">De R$ XX,00 por apenas</div>
-      <div class="price-new"><span>R$</span>XX<span>,00</span></div>
-      <div class="price-tag">✅ Você economiza R$ XX,00 hoje</div>
+      <!-- escassez discreta -->
+      <div class="scarcity-bar">
+        <div class="scarcity-fill"></div>
+      </div>
+      <p class="scarcity-txt">🔴 Poucas unidades restantes neste preço</p>
+
+      <div class="price-old">De R$ 97,00 por apenas</div>
+      <div class="price-new"><span>R$</span>19<span>,90</span></div>
+      <div class="price-tag">✅ Você economiza R$ 77,10 hoje</div>
 
       <div class="what-you-get">
         <div class="what-item"><span class="check">🔥</span> 6 revistas inéditas +18</div>
         <div class="what-item"><span class="check">🔥</span> Acesso vitalício imediato</div>
-        <div class="what-item"><span class="check">🔥</span> Bônus 01 — [título]</div>
-        <div class="what-item"><span class="check">🔥</span> Bônus 02 — [título]</div>
-        <div class="what-item"><span class="check">🔥</span> Bônus 03 — [título]</div>
-        <div class="what-item"><span class="check">🔥</span> Entrega discreta e imediata</div>
+        <div class="what-item"><span class="check">🎁</span> Bônus 01 — Guia das Poses Esquecidas</div>
+        <div class="what-item"><span class="check">🎁</span> Bônus 02 — Bastidores Proibidos</div>
+        <div class="what-item"><span class="check">🎁</span> Bônus 03 — Acesso VIP Colecionador</div>
+        <div class="what-item"><span class="check">🔒</span> Entrega discreta e imediata</div>
       </div>
 
-      <a href="#" class="buy-btn">
-        💳 Quero acesso agora — R$XX,00
+      <!-- ⚠️ SUBSTITUA O href PELO LINK DO SEU CHECKOUT -->
+      <a href="SEU_LINK_DE_CHECKOUT_AQUI" class="buy-btn">
+        💳 Quero acesso agora — R$19,90
       </a>
 
       <div class="secure-badges">
@@ -1296,7 +1327,8 @@
     <strong>Pack Exclusivo 🔥</strong>
     <small>Oferta por tempo limitado</small>
   </div>
-  <a href="#oferta" class="fb-btn">Garantir R$XX</a>
+  <!-- ⚠️ SUBSTITUA O href PELO LINK DO SEU CHECKOUT -->
+  <a href="SEU_LINK_DE_CHECKOUT_AQUI" class="fb-btn">Garantir R$19,90</a>
 </div>
 
 <script>
