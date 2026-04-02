@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Pack Exclusivo — Coleção Proibida</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0709;
+    --bg2: #110d0f;
+    --bg3: #1a1215;
+    --accent: #c9183a;
+    --accent2: #ff2d55;
+    --gold: #d4a843;
+    --gold2: #f0c96a;
+    --text: #f0e8ea;
+    --muted: #8a7079;
+    --card: #160f12;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: .35;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px 80px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,24,58,.18) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(212,168,67,.10) 0%, transparent 60%),
+      var(--bg);
+    z-index: 0;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,24,58,.22) 0%, transparent 70%);
+    top: -80px; left: 50%; transform: translateX(-50%);
+    animation: pulse 4s ease-in-out infinite;
+    z-index: 0;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: .6; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.12); }
+  }
+
+  .badge {
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(201,24,58,.15);
+    border: 1px solid rgba(201,24,58,.4);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 28px;
+    backdrop-filter: blur(8px);
+  }
+
+  .headline {
+    position: relative; z-index: 1;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -.5px;
+    margin-bottom: 20px;
+  }
+
+  .headline em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .headline .gold {
+    color: var(--gold2);
+  }
+
+  .subheadline {
+    position: relative; z-index: 1;
+    font-size: clamp(1rem, 3.5vw, 1.15rem);
+    font-weight: 300;
+    color: #c4adb3;
+    max-width: 340px;
+    line-height: 1.65;
+    margin-bottom: 40px;
+  }
+
+  .subheadline strong { color: var(--text); font-weight: 600; }
+
+  /* decorative divider */
+  .divider {
+    display: flex; align-items: center; gap: 10px;
+    width: 100%; max-width: 280px;
+    margin: 0 auto 40px;
+    position: relative; z-index: 1;
+  }
+  .divider span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,24,58,.5), transparent); }
+  .divider i { font-style: normal; font-size: 18px; }
+
+  /* ── MOCKUP ZONE ── */
+  .mockup-zone {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 340px;
+    aspect-ratio: 9/12;
+    margin: 0 auto 48px;
+    border-radius: 20px;
+    border: 1px dashed rgba(201,24,58,.35);
+    background: rgba(22,15,18,.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 40px rgba(201,24,58,.08), inset 0 0 40px rgba(0,0,0,.4);
+  }
+
+  .mockup-zone .mock-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .mockup-zone .mock-icon {
+    font-size: 48px;
+    opacity: .4;
+  }
+
+  .mockup-badge {
+    position: absolute;
+    top: -14px; right: -10px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    box-shadow: 0 4px 20px rgba(201,24,58,.5);
+  }
+
+  /* ── CTA BTN ── */
+  .cta-btn {
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, var(--accent), #8b0f27);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    padding: 18px 36px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(201,24,58,.45), 0 0 0 0 rgba(201,24,58,.3);
+    animation: cta-pulse 2.4s ease-in-out infinite;
+    transition: transform .2s;
+    width: 100%; max-width: 340px;
+    justify-content: center;
+  }
+
+  .cta-btn:active { transform: scale(.97); }
+
+  @keyframes cta-pulse {
+    0%,100% { box-shadow: 0 8px 30px rgba(201,24,58,.45), 0 0 0 0 rgba(201,24,58,.3); }
+    50% { box-shadow: 0 8px 40px rgba(201,24,58,.6), 0 0 0 12px rgba(201,24,58,0); }
+  }
+
+  .cta-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: .5px;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 64px 20px;
+    position: relative;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .section-sub {
+    font-size: .9rem;
+    color: var(--muted);
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+
+  /* ── CARROSSEL ── */
+  .carousel-section {
+    background: var(--bg2);
+    overflow: hidden;
+  }
+
+  .carousel-section .inner {
+    max-width: 480px; margin: 0 auto;
+  }
+
+  .carousel-track-wrap {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+  .carousel-track-wrap::-webkit-scrollbar { display: none; }
+
+  .carousel-track {
+    display: flex;
+    gap: 14px;
+    width: max-content;
+    padding-bottom: 8px;
+  }
+
+  .carousel-card {
+    width: 200px;
+    aspect-ratio: 2/3;
+    border-radius: 16px;
+    background: var(--card);
+    border: 1px solid rgba(201,24,58,.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,.4);
+    transition: transform .3s, border-color .3s;
+  }
+
+  .carousel-card:hover {
+    transform: scale(1.03);
+    border-color: rgba(201,24,58,.5);
+  }
+
+  .carousel-card .card-num {
+    position: absolute;
+    top: 12px; left: 14px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,.3);
+  }
+
+  .carousel-card .card-blur {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(201,24,58,.08) 0%, transparent 60%);
+  }
+
+  .carousel-card .card-icon { font-size: 36px; opacity: .3; }
+  .carousel-card .card-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .carousel-card .card-lock {
+    position: absolute;
+    bottom: 14px; right: 14px;
+    font-size: 14px;
+    opacity: .5;
+  }
+
+  .carousel-dots {
+    display: flex; justify-content: center; gap: 6px;
+    margin-top: 20px;
+  }
+
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: all .3s;
+  }
+
+  .dot.active { background: var(--accent); width: 18px; border-radius: 4px; }
+
+  /* ── BENEFITS ── */
+  .benefits-section { background: var(--bg); }
+  .benefits-section .inner { max-width: 480px; margin: 0 auto; }
+
+  .benefit-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .benefit-item:last-child { border-bottom: none; }
+
+  .benefit-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(201,24,58,.12);
+    border: 1px solid rgba(201,24,58,.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .benefit-text h4 {
+    font-size: .95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .benefit-text p {
+    font-size: .82rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* ── BONUS ── */
+  .bonus-section {
+    background: var(--bg2);
+    border-top: 1px solid rgba(212,168,67,.12);
+    border-bottom: 1px solid rgba(212,168,67,.12);
+  }
+
+  .bonus-section .inner { max-width: 480px; margin: 0 auto; }
+
+  .bonus-card {
+    background: var(--card);
+    border: 1px solid rgba(212,168,67,.2);
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bonus-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(212,168,67,.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .bonus-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(212,168,67,.15);
+    border: 1px solid rgba(212,168,67,.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .bonus-info { flex: 1; }
+  .bonus-tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .bonus-info h4 {
+    font-size: .92rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .bonus-info p {
+    font-size: .78rem;
+    color: var(--muted);
+  }
+
+  .bonus-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold2);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* ── OFFER ── */
+  .offer-section {
+    background: var(--bg3);
+    text-align: center;
+  }
+
+  .offer-section .inner { max-width: 480px; margin: 0 auto; }
+
+  .offer-card {
+    background: var(--card);
+    border: 1px solid rgba(201,24,58,.3);
+    border-radius: 24px;
+    padding: 32px 24px 28px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(201,24,58,.1);
+  }
+
+  .offer-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+  }
+
+  .offer-ribbon {
+    position: absolute;
+    top: 18px; right: -28px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 36px;
+    transform: rotate(45deg);
+  }
+
+  .offer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .offer-sub {
+    font-size: .82rem;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .price-old {
+    font-size: .85rem;
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .price-new {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-new span {
+    font-size: 1.4rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .price-tag {
+    font-size: .78rem;
+    color: #4caf91;
+    margin-bottom: 28px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+
+  .what-you-get {
+    text-align: left;
+    margin-bottom: 28px;
+  }
+
+  .what-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+    font-size: .85rem;
+  }
+
+  .what-item:last-child { border-bottom: none; }
+
+  .what-item .check {
+    color: var(--accent2);
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .buy-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%;
+    background: linear-gradient(135deg, #c9183a, #8b0f27);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 20px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(201,24,58,.4);
+    animation: cta-pulse 2.4s ease-in-out infinite;
+    transition: transform .2s;
+  }
+
+  .buy-btn:active { transform: scale(.97); }
+
+  .secure-badges {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  .sec-badge {
+    display: flex; align-items: center; gap: 5px;
+    font-size: .72rem;
+    color: var(--muted);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg);
+    padding: 32px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,.04);
+  }
+
+  footer p {
+    font-size: .72rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--accent2);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  /* ── FLOATING BAR ── */
+  .float-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(10,7,9,.92);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(201,24,58,.25);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform .4s cubic-bezier(.16,1,.3,1);
+  }
+
+  .float-bar.visible { transform: translateY(0); }
+
+  .float-bar .fb-text { flex: 1; }
+  .float-bar .fb-text strong { font-size: .85rem; display: block; }
+  .float-bar .fb-text small { font-size: .72rem; color: var(--accent2); }
+
+  .float-bar .fb-btn {
+    background: var(--accent);
+    color: #fff;
+    font-size: .82rem;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* SECTION BG PATTERN */
+  .pattern-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(201,24,58,.02) 0,
+      rgba(201,24,58,.02) 1px,
+      transparent 0,
+      transparent 50%
+    );
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+
+  <div class="badge">🔞 acesso restrito · conteúdo adulto</div>
+
+  <h1 class="headline">
+    O que elas <em>nunca</em><br>
+    deixaram você ver —<br>
+    <span class="gold">agora está aqui. 🔥</span>
+  </h1>
+
+  <p class="subheadline">
+    Pack com <strong>revistas +18 exclusivas</strong> que nunca foram ao ar.
+    Material raro, proibido e 100% original — só para quem tem coragem.
+  </p>
+
+  <div class="divider">
+    <span></span>
+    <i>💋</i>
+    <span></span>
+  </div>
+
+  <!-- MOCKUP ZONE -->
+  <div class="mockup-zone">
+    <div class="mockup-badge">EXCLUSIVO</div>
+    <div class="mock-icon">📸</div>
+    <div class="mock-label">Insira seu mockup aqui</div>
+    <!-- Substitua este bloco pela sua imagem:
+    <img src="sua-imagem.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:20px;" />
+    -->
+  </div>
+
+  <a href="#oferta" class="cta-btn">
+    🔥 Quero acesso agora
+  </a>
+  <p class="cta-sub">⚡ Entrega imediata após pagamento</p>
+</section>
+
+<!-- ════════════════════════════════════════
+     CARROSSEL
+════════════════════════════════════════ -->
+<section class="carousel-section" id="exemplos">
+  <div class="inner">
+    <p class="section-label">👁️ prévia exclusiva</p>
+    <h2 class="section-title">Veja alguns<br><em style="color:var(--accent2)">exemplos</em></h2>
+    <p class="section-sub">Material que você NUNCA viu antes. Tudo inédito, tudo censurado na época.</p>
+
+    <div class="carousel-track-wrap">
+      <div class="carousel-track" id="carTrack">
+        <!-- CARD 1 -->
+        <div class="carousel-card">
+          <div class="card-blur"></div>
+          <span class="card-num">01</span>
+          <div class="card-icon">🔥</div>
+          <div class="card-label">Edição I</div>
+          <div class="card-lock">🔒</div>
+          <!-- Substitua pelo seu conteúdo:
+          <img src="preview1.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:16px;" />
+          -->
+        </div>
+        <!-- CARD 2 -->
+        <div class="carousel-card">
+          <div class="card-blur"></div>
+          <span class="card-num">02</span>
+          <div class="card-icon">💋</div>
+          <div class="card-label">Edição II</div>
+          <div class="card-lock">🔒</div>
+        </div>
+        <!-- CARD 3 -->
+        <div class="carousel-card">
+          <div class="card-blur"></div>
+          <span class="card-num">03</span>
+          <div class="card-icon">🌹</div>
+          <div class="card-label">Edição III</div>
+          <div class="card-lock">🔒</div>
+        </div>
+        <!-- CARD 4 -->
+        <div class="carousel-card">
+          <div class="card-blur"></div>
+          <span class="card-num">04</span>
+          <div class="card-icon">🔞</div>
+          <div class="card-label">Edição IV</div>
+          <div class="card-lock">🔒</div>
+        </div>
+        <!-- CARD 5 -->
+        <div class="carousel-card">
+          <div class="card-blur"></div>
+          <span class="card-num">05</span>
+          <div class="card-icon">💎</div>
+          <div class="card-label">Edição V</div>
+          <div class="card-lock">🔒</div>
+        </div>
+        <!-- CARD 6 -->
+        <div class="carousel-card">
+          <div class="card-blur"></div>
+          <span class="card-num">06</span>
+          <div class="card-icon">🖤</div>
+          <div class="card-label">Edição VI</div>
+          <div class="card-lock">🔒</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     BENEFITS
+════════════════════════════════════════ -->
+<section class="benefits-section">
+  <div class="inner">
+    <p class="section-label">✨ por que vale a pena</p>
+    <h2 class="section-title">Tudo que você<br>recebe no pack</h2>
+    <p class="section-sub">Simples, rápido e 100% discreto.</p>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">📦</div>
+      <div class="benefit-text">
+        <h4>Pack completo e inédito</h4>
+        <p>Todas as edições organizadas e prontas para abrir. Nada foi publicado antes — material original de época.</p>
+      </div>
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">⚡</div>
+      <div class="benefit-text">
+        <h4>Acesso imediato</h4>
+        <p>Pagou, já recebeu. Entrega automática em segundos, sem espera, sem fila.</p>
+      </div>
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">🔒</div>
+      <div class="benefit-text">
+        <h4>Compra 100% discreta</h4>
+        <p>Nenhum nome suspeito na fatura. Transação sigilosa do início ao fim.</p>
+      </div>
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">📲</div>
+      <div class="benefit-text">
+        <h4>Funciona em qualquer device</h4>
+        <p>Celular, tablet ou computador — acesse onde e quando quiser, sem restrição.</p>
+      </div>
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">♾️</div>
+      <div class="benefit-text">
+        <h4>Acesso vitalício</h4>
+        <p>Baixe uma vez, guarde para sempre. Sem mensalidade, sem renovação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     BONUS
+════════════════════════════════════════ -->
+<section class="bonus-section">
+  <div class="inner">
+    <p class="section-label" style="color:var(--gold)">🎁 bônus exclusivos</p>
+    <h2 class="section-title">Você ainda leva<br><span style="color:var(--gold2)">de graça</span></h2>
+    <p class="section-sub">Só quem comprar hoje recebe esses bônus. Oferta por tempo limitado.</p>
+
+    <div class="bonus-card">
+      <div class="bonus-num">🎁</div>
+      <div class="bonus-info">
+        <div class="bonus-tag">Bônus 01</div>
+        <h4>Título do Bônus Aqui</h4>
+        <p>Descrição curta do que é esse bônus e o valor que entrega.</p>
+      </div>
+      <div class="bonus-val">R$XX</div>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-num">🔥</div>
+      <div class="bonus-info">
+        <div class="bonus-tag">Bônus 02</div>
+        <h4>Título do Bônus Aqui</h4>
+        <p>Descrição curta do que é esse bônus e o valor que entrega.</p>
+      </div>
+      <div class="bonus-val">R$XX</div>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-num">💎</div>
+      <div class="bonus-info">
+        <div class="bonus-tag">Bônus 03</div>
+        <h4>Título do Bônus Aqui</h4>
+        <p>Descrição curta do que é esse bônus e o valor que entrega.</p>
+      </div>
+      <div class="bonus-val">R$XX</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     OFERTA
+════════════════════════════════════════ -->
+<section class="offer-section pattern-bg" id="oferta">
+  <div class="inner">
+    <p class="section-label">💳 condição especial</p>
+    <h2 class="section-title">Garanta agora<br>antes que encerre 🔥</h2>
+    <p class="section-sub">Vagas limitadas a este preço. Sem renovação — acesso vitalício.</p>
+
+    <div class="offer-card">
+      <div class="offer-ribbon">Oferta</div>
+
+      <div class="offer-title">Pack Coleção Proibida</div>
+      <div class="offer-sub">+ todos os bônus exclusivos</div>
+
+      <div class="price-old">De R$ XX,00 por apenas</div>
+      <div class="price-new"><span>R$</span>XX<span>,00</span></div>
+      <div class="price-tag">✅ Você economiza R$ XX,00 hoje</div>
+
+      <div class="what-you-get">
+        <div class="what-item"><span class="check">🔥</span> 6 revistas inéditas +18</div>
+        <div class="what-item"><span class="check">🔥</span> Acesso vitalício imediato</div>
+        <div class="what-item"><span class="check">🔥</span> Bônus 01 — [título]</div>
+        <div class="what-item"><span class="check">🔥</span> Bônus 02 — [título]</div>
+        <div class="what-item"><span class="check">🔥</span> Bônus 03 — [título]</div>
+        <div class="what-item"><span class="check">🔥</span> Entrega discreta e imediata</div>
+      </div>
+
+      <a href="#" class="buy-btn">
+        💳 Quero acesso agora — R$XX,00
+      </a>
+
+      <div class="secure-badges">
+        <div class="sec-badge">🔒 Pagamento seguro</div>
+        <div class="sec-badge">⚡ Acesso imediato</div>
+        <div class="sec-badge">🕵️ 100% discreto</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">Coleção Proibida</div>
+  <p>
+    Conteúdo exclusivo para maiores de 18 anos.<br>
+    Ao comprar, você confirma ser maior de idade e concorda com os termos.<br><br>
+    © 2025 · Todos os direitos reservados · Política de privacidade
+  </p>
+</footer>
+
+<!-- ════════════════════════════════════════
+     FLOATING BAR
+════════════════════════════════════════ -->
+<div class="float-bar" id="floatBar">
+  <div class="fb-text">
+    <strong>Pack Exclusivo 🔥</strong>
+    <small>Oferta por tempo limitado</small>
+  </div>
+  <a href="#oferta" class="fb-btn">Garantir R$XX</a>
+</div>
+
+<script>
+  // Float bar aparece após rolar
+  const bar = document.getElementById('floatBar');
+  window.addEventListener('scroll', () => {
+    bar.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Dots do carrossel
+  const track = document.getElementById('carTrack');
+  const dots = document.querySelectorAll('.dot');
+  const cards = document.querySelectorAll('.carousel-card');
+
+  if (track && dots.length) {
+    track.addEventListener('scroll', () => {
+      const idx = Math.round(track.scrollLeft / (214));
+      dots.forEach((d, i) => d.classList.toggle('active', i === Math.min(idx, dots.length - 1)));
+    });
+  }
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
