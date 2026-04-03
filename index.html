@@ -119,15 +119,16 @@
   .mockup-scene {
     position: relative; z-index: 1;
     width: 100%;
-    height: 340px;
-    margin: 0 auto 48px;
+    height: 460px;
+    margin: 0 auto 32px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    padding-bottom: 20px;
   }
 
   .mockup-badge {
-    position: absolute; top: 0; right: 20px;
+    position: absolute; top: 12px; right: 16px;
     background: var(--accent); color: #fff;
     font-size: 10px; font-weight: 700;
     letter-spacing: 1px; text-transform: uppercase;
@@ -138,23 +139,24 @@
 
   .fan-wrap {
     position: relative;
-    width: 160px;
-    height: 220px;
+    width: 200px;
+    height: 300px;
   }
 
-  /* cada card fica empilhado, rotacionado a partir da base */
+  /* cada card empilhado, gira a partir da base */
   .fan-card {
     position: absolute;
     bottom: 0; left: 0;
-    width: 150px;
-    height: 210px;
-    border-radius: 14px;
+    width: 186px;
+    height: 268px;
+    border-radius: 16px;
     overflow: hidden;
     border: 2px solid rgba(201,24,58,.5);
-    box-shadow: 0 12px 40px rgba(0,0,0,.7);
+    box-shadow: 0 16px 50px rgba(0,0,0,.75);
     transform-origin: bottom center;
     opacity: 0;
-    transform: translateY(120%) rotate(0deg);
+    transform: translateY(140%) rotate(0deg);
+    will-change: transform, opacity;
   }
 
   .fan-card img {
@@ -162,55 +164,68 @@
     object-fit: cover;
     display: block;
     filter: brightness(.9) contrast(1.08) saturate(1.1);
+    transition: opacity .5s ease;
   }
 
+  /* overlay */
   .fan-card::after {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.6) 100%);
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%);
+    pointer-events: none;
   }
 
-  /* animação de entrada: sobem de baixo */
+  /* ── ENTRADA: sobe de baixo ── */
   .fan-card.animate {
-    animation: fan-rise .7s cubic-bezier(.16,1,.3,1) forwards;
+    animation: fan-rise .75s cubic-bezier(.16,1,.3,1) forwards;
   }
 
   @keyframes fan-rise {
-    0%   { opacity: 0; transform: translateY(120%) rotate(var(--rot-start)); }
-    60%  { opacity: 1; }
+    0%   { opacity: 0; transform: translateY(140%) rotate(var(--rot-start)); }
+    55%  { opacity: 1; }
     100% { opacity: 1; transform: translateY(0) rotate(var(--rot-end)); }
   }
 
-  /* posições finais de cada card — leque aberto */
-  .fan-card:nth-child(1) { --rot-start: -40deg; --rot-end: -32deg; z-index: 1; animation-delay: .05s; }
-  .fan-card:nth-child(2) { --rot-start: -22deg; --rot-end: -16deg; z-index: 2; animation-delay: .15s; }
-  .fan-card:nth-child(3) { --rot-start:  -4deg; --rot-end:   0deg; z-index: 3; animation-delay: .25s; }
-  .fan-card:nth-child(4) { --rot-start:  14deg; --rot-end:  16deg; z-index: 2; animation-delay: .35s; }
-  .fan-card:nth-child(5) { --rot-start:  30deg; --rot-end:  32deg; z-index: 1; animation-delay: .45s; }
+  /* posições finais — leque bem aberto */
+  .fan-card:nth-child(1) { --rot-start:-44deg; --rot-end:-34deg; z-index:1; animation-delay:.05s; }
+  .fan-card:nth-child(2) { --rot-start:-24deg; --rot-end:-17deg; z-index:2; animation-delay:.16s; }
+  .fan-card:nth-child(3) { --rot-start: -4deg; --rot-end:  0deg; z-index:5; animation-delay:.27s; }
+  .fan-card:nth-child(4) { --rot-start: 16deg; --rot-end: 17deg; z-index:2; animation-delay:.38s; }
+  .fan-card:nth-child(5) { --rot-start: 36deg; --rot-end: 34deg; z-index:1; animation-delay:.49s; }
 
-  /* leve flutuação contínua depois da entrada */
+  /* card central maior e com float */
   .fan-card:nth-child(3) {
-    animation: fan-rise .7s cubic-bezier(.16,1,.3,1) .25s forwards,
-               fan-float 3.5s ease-in-out 1s infinite;
+    width: 200px;
+    height: 284px;
+    left: -7px;
+    border-color: rgba(255,45,85,.75);
+    box-shadow: 0 20px 60px rgba(201,24,58,.45);
+    animation: fan-rise .75s cubic-bezier(.16,1,.3,1) .27s forwards,
+               fan-float 3.8s ease-in-out 1.2s infinite;
   }
   @keyframes fan-float {
     0%,100% { transform: translateY(0) rotate(0deg); }
-    50%     { transform: translateY(-6px) rotate(0deg); }
+    50%     { transform: translateY(-8px) rotate(0deg); }
   }
+
+  /* ── TROCA de imagem com fade ── */
+  .fan-card img.fade-out { opacity: 0; }
+  .fan-card img.fade-in  { opacity: 1; }
 
   /* glow embaixo */
   .fan-glow {
     position: absolute;
-    bottom: -20px; left: 50%;
+    bottom: 10px; left: 50%;
     transform: translateX(-50%);
-    width: 180px; height: 30px;
-    background: radial-gradient(ellipse, rgba(201,24,58,.5) 0%, transparent 70%);
-    filter: blur(10px);
-    animation: glow-pulse 3s ease-in-out infinite;
+    width: 240px; height: 36px;
+    background: radial-gradient(ellipse, rgba(201,24,58,.55) 0%, transparent 70%);
+    filter: blur(12px);
+    animation: glow-pulse 3.5s ease-in-out infinite;
+    pointer-events: none;
   }
   @keyframes glow-pulse {
-    0%,100% { opacity: .5; }
-    50%     { opacity: 1; }
+    0%,100% { opacity: .5; width: 200px; }
+    50%     { opacity: 1;  width: 260px; }
   }
 
   /* ── CTA BTN ── */
@@ -766,10 +781,60 @@
   // ── Fan: dispara animações ao carregar ──
   (function() {
     const cards = document.querySelectorAll('.fan-card');
-    // pequeno delay para garantir que o browser já pintou
     setTimeout(() => {
       cards.forEach(c => c.classList.add('animate'));
     }, 100);
+
+    // ── Alternância de imagens após 1.5s ──
+    const images = [
+      'https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-11.png',
+      'https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-16.png',
+      'https://metodotripe.shop/wp-content/uploads/2026/04/Feiticeira-16.jpg',
+      'https://metodotripe.shop/wp-content/uploads/2026/04/Feiticeira-31.jpg',
+      'https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-13.png'
+    ];
+
+    // índice atual de cada card (começa com a imagem original)
+    const cardImgIndex = [0, 1, 2, 3, 4];
+
+    function swapCard(cardIndex) {
+      const card = cards[cardIndex];
+      if (!card) return;
+      const img = card.querySelector('img');
+
+      // próxima imagem (pula a atual)
+      cardImgIndex[cardIndex] = (cardImgIndex[cardIndex] + 1) % images.length;
+      const nextSrc = images[cardImgIndex[cardIndex]];
+
+      // pré-carrega e depois faz fade
+      const preload = new Image();
+      preload.src = nextSrc;
+      preload.onload = () => {
+        img.style.transition = 'opacity .45s ease';
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.src = nextSrc;
+          img.style.opacity = '1';
+        }, 460);
+      };
+    }
+
+    // após animação de entrada terminar (~1.2s), começa o ciclo
+    setTimeout(() => {
+      // troca um card aleatório a cada 2.2s
+      let queue = [];
+      function nextSwap() {
+        if (queue.length === 0) {
+          // recarrega fila embaralhada
+          queue = [0,1,2,3,4].sort(() => Math.random() - .5);
+        }
+        const idx = queue.pop();
+        swapCard(idx);
+        // intervalo entre 1.8s e 2.8s
+        setTimeout(nextSwap, 1800 + Math.random() * 1000);
+      }
+      nextSwap();
+    }, 1400);
   })();
 
   // ── FAQ accordion ──
