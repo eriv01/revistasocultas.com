@@ -240,19 +240,48 @@
   /* CAROUSEL */
   .carousel-section{background:var(--bg2);overflow:hidden}
   .carousel-section .inner{max-width:480px;margin:0 auto}
-  .carousel-track-wrap{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin:0 -20px;padding:0 20px}
-  .carousel-track-wrap::-webkit-scrollbar{display:none}
-  .carousel-track{display:flex;gap:14px;width:max-content;padding-bottom:8px}
-  .carousel-card{width:190px;aspect-ratio:2/3;border-radius:16px;background:var(--card);border:1px solid rgba(201,24,58,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;flex-shrink:0;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.4);transition:transform .3s,border-color .3s}
-  .carousel-card:hover{transform:scale(1.03);border-color:rgba(201,24,58,.5)}
-  .carousel-card .card-num{position:absolute;top:12px;left:14px;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.3)}
-  .carousel-card .card-blur{position:absolute;inset:0;background:linear-gradient(160deg,rgba(201,24,58,.08) 0%,transparent 60%)}
-  .carousel-card .card-icon{font-size:36px;opacity:.3}
-  .carousel-card .card-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-  .carousel-card .card-lock{position:absolute;bottom:14px;right:14px;font-size:14px;opacity:.5}
-  .carousel-dots{display:flex;justify-content:center;gap:6px;margin-top:20px}
-  .dot{width:6px;height:6px;border-radius:50%;background:var(--muted);transition:all .3s}
-  .dot.active{background:var(--accent);width:18px;border-radius:4px}
+
+  .auto-carousel-wrap{
+    overflow:hidden;
+    margin:0 -20px;
+    position:relative;
+  }
+  .auto-carousel-wrap::before,
+  .auto-carousel-wrap::after{
+    content:'';position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none;
+  }
+  .auto-carousel-wrap::before{left:0;background:linear-gradient(to right,var(--bg2),transparent)}
+  .auto-carousel-wrap::after{right:0;background:linear-gradient(to left,var(--bg2),transparent)}
+
+  .auto-carousel-track{
+    display:flex;gap:12px;
+    width:max-content;
+    padding:4px 20px 12px;
+    will-change:transform;
+  }
+  .carousel-card{
+    width:150px;
+    aspect-ratio:2/3;
+    border-radius:14px;
+    background:var(--card);
+    border:1px solid rgba(201,24,58,.25);
+    flex-shrink:0;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 6px 24px rgba(0,0,0,.5);
+    transition:border-color .3s,transform .3s;
+  }
+  .carousel-card:hover{border-color:rgba(201,24,58,.6);transform:scale(1.04)}
+  .carousel-card img{
+    width:100%;height:100%;
+    object-fit:cover;display:block;
+    filter:brightness(.92) contrast(1.06) saturate(1.08);
+  }
+  .carousel-card::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.45) 100%);
+    pointer-events:none;
+  }
 
   /* BENEFITS */
   .benefits-section{background:var(--bg)}
@@ -354,7 +383,7 @@
   <!-- ✅ MODIFICAÇÃO 1: badge "🔞 acesso restrito" REMOVIDO -->
   <!-- ✅ MODIFICAÇÃO 2: headline atualizado com novo texto -->
   <h1 class="headline">
-    Receba <em>967 revistas</em><br>
+    Receba hoje <em>967 revistas</em><br>
     porno que não foram<br>
     ao ar na época —<br>
     <span class="gold">hoje na palma da sua mão. 🔥</span>
@@ -451,19 +480,31 @@
     <p class="section-label">👁️ prévia exclusiva</p>
     <h2 class="section-title">Veja alguns<br><em style="color:var(--accent2)">exemplos</em></h2>
     <p class="section-sub">Material que você NUNCA viu antes. Tudo inédito, tudo censurado na época.</p>
-    <div class="carousel-track-wrap">
-      <div class="carousel-track" id="carTrack">
-        <div class="carousel-card"><div class="card-blur"></div><span class="card-num">01</span><div class="card-icon">🔥</div><div class="card-label">Edição I</div><div class="card-lock">🔒</div></div>
-        <div class="carousel-card"><div class="card-blur"></div><span class="card-num">02</span><div class="card-icon">💋</div><div class="card-label">Edição II</div><div class="card-lock">🔒</div></div>
-        <div class="carousel-card"><div class="card-blur"></div><span class="card-num">03</span><div class="card-icon">🌹</div><div class="card-label">Edição III</div><div class="card-lock">🔒</div></div>
-        <div class="carousel-card"><div class="card-blur"></div><span class="card-num">04</span><div class="card-icon">🔞</div><div class="card-label">Edição IV</div><div class="card-lock">🔒</div></div>
-        <div class="carousel-card"><div class="card-blur"></div><span class="card-num">05</span><div class="card-icon">💎</div><div class="card-label">Edição V</div><div class="card-lock">🔒</div></div>
-        <div class="carousel-card"><div class="card-blur"></div><span class="card-num">06</span><div class="card-icon">🖤</div><div class="card-label">Edição VI</div><div class="card-lock">🔒</div></div>
+    <div class="auto-carousel-wrap">
+      <div class="auto-carousel-track" id="carTrack">
+        <div class="carousel-card"><img loading="eager" src="https://metodotripe.shop/wp-content/uploads/2026/04/tassiacamar03.jpg" alt=""/></div>
+        <div class="carousel-card"><img loading="eager" src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-17.png" alt=""/></div>
+        <div class="carousel-card"><img loading="eager" src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-16.png" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-15.png" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-12.png" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/23.jpg" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/18.jpg" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/011.jpg" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/07.jpg" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/07-1.jpg" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/06.jpg" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/001-2.jpg" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/85575_Digitalizar0002_123_548lo.jpg" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/85577_Digitalizar0004_123_399lo.jpg" alt=""/></div>
+        <!-- duplicatas para loop infinito -->
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/tassiacamar03.jpg" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-17.png" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-16.png" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-15.png" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-12.png" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/23.jpg" alt=""/></div>
+        <div class="carousel-card"><img loading="lazy" src="https://metodotripe.shop/wp-content/uploads/2026/04/18.jpg" alt=""/></div>
       </div>
-    </div>
-    <div class="carousel-dots">
-      <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
-      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
     </div>
   </div>
 </section>
@@ -703,15 +744,32 @@
   const bar = document.getElementById('floatBar');
   window.addEventListener('scroll',()=>{ bar.classList.toggle('visible', window.scrollY>400); });
 
-  // Carousel dots
-  const track=document.getElementById('carTrack');
-  const dots=document.querySelectorAll('.dot');
-  if(track&&dots.length){
-    track.addEventListener('scroll',()=>{
-      const idx=Math.round(track.scrollLeft/204);
-      dots.forEach((d,i)=>d.classList.toggle('active',i===Math.min(idx,dots.length-1)));
-    });
-  }
+  // Carrossel auto-scroll infinito
+  (function(){
+    const track = document.getElementById('carTrack');
+    if(!track) return;
+    const cardW = 150 + 12; // width + gap
+    const total = 14; // qtd de cards originais
+    const halfW = cardW * total;
+    let pos = 0;
+    let paused = false;
+    const speed = 0.9; // px por frame — ajuste de velocidade
+
+    track.addEventListener('mouseenter', ()=>{ paused = true; });
+    track.addEventListener('mouseleave', ()=>{ paused = false; });
+    track.addEventListener('touchstart', ()=>{ paused = true; }, {passive:true});
+    track.addEventListener('touchend', ()=>{ setTimeout(()=>{ paused = false; }, 1200); }, {passive:true});
+
+    function tick(){
+      if(!paused){
+        pos += speed;
+        if(pos >= halfW) pos -= halfW;
+        track.style.transform = `translateX(-${pos}px)`;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
 
   // Smooth anchor
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
