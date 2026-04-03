@@ -115,17 +115,19 @@
   .divider span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,24,58,.5), transparent); }
   .divider i { font-style: normal; font-size: 18px; }
 
-  /* ── MOCKUP CARROSSEL 3D ── */
+  /* ── MOCKUP FAN ── */
   .mockup-scene {
     position: relative; z-index: 1;
-    width: 100%; max-width: 340px;
-    height: 400px;
+    width: 100%;
+    height: 340px;
     margin: 0 auto 48px;
-    perspective: 900px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
   }
 
   .mockup-badge {
-    position: absolute; top: 10px; right: 10px;
+    position: absolute; top: 0; right: 20px;
     background: var(--accent); color: #fff;
     font-size: 10px; font-weight: 700;
     letter-spacing: 1px; text-transform: uppercase;
@@ -134,80 +136,81 @@
     z-index: 20;
   }
 
-  .mockup-ring {
-    width: 100%; height: 100%;
-    transform-style: preserve-3d;
-    animation: ring-spin 14s linear infinite;
+  .fan-wrap {
     position: relative;
+    width: 160px;
+    height: 220px;
   }
 
-  @keyframes ring-spin {
-    from { transform: rotateY(0deg); }
-    to   { transform: rotateY(360deg); }
-  }
-
-  .mockup-ring:hover { animation-play-state: paused; }
-
-  .ring-card {
+  /* cada card fica empilhado, rotacionado a partir da base */
+  .fan-card {
     position: absolute;
-    width: 190px;
-    height: 260px;
-    left: 50%; top: 50%;
-    margin-left: -95px;
-    margin-top: -130px;
-    border-radius: 18px;
+    bottom: 0; left: 0;
+    width: 150px;
+    height: 210px;
+    border-radius: 14px;
     overflow: hidden;
-    border: 2px solid rgba(201,24,58,.4);
-    box-shadow: 0 8px 40px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04);
-    backface-visibility: hidden;
-    cursor: pointer;
-    transition: border-color .3s;
+    border: 2px solid rgba(201,24,58,.5);
+    box-shadow: 0 12px 40px rgba(0,0,0,.7);
+    transform-origin: bottom center;
+    opacity: 0;
+    transform: translateY(120%) rotate(0deg);
   }
 
-  .ring-card:hover { border-color: rgba(255,45,85,.9); }
-
-  .ring-card img {
+  .fan-card img {
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
-    pointer-events: none;
-    filter: brightness(.92) contrast(1.05);
+    filter: brightness(.9) contrast(1.08) saturate(1.1);
   }
 
-  /* overlay gradient no card */
-  .ring-card::after {
+  .fan-card::after {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%);
-    border-radius: 18px;
+    background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.6) 100%);
   }
 
-  /* reflexo no chão */
-  .mockup-floor {
+  /* animação de entrada: sobem de baixo */
+  .fan-card.animate {
+    animation: fan-rise .7s cubic-bezier(.16,1,.3,1) forwards;
+  }
+
+  @keyframes fan-rise {
+    0%   { opacity: 0; transform: translateY(120%) rotate(var(--rot-start)); }
+    60%  { opacity: 1; }
+    100% { opacity: 1; transform: translateY(0) rotate(var(--rot-end)); }
+  }
+
+  /* posições finais de cada card — leque aberto */
+  .fan-card:nth-child(1) { --rot-start: -40deg; --rot-end: -32deg; z-index: 1; animation-delay: .05s; }
+  .fan-card:nth-child(2) { --rot-start: -22deg; --rot-end: -16deg; z-index: 2; animation-delay: .15s; }
+  .fan-card:nth-child(3) { --rot-start:  -4deg; --rot-end:   0deg; z-index: 3; animation-delay: .25s; }
+  .fan-card:nth-child(4) { --rot-start:  14deg; --rot-end:  16deg; z-index: 2; animation-delay: .35s; }
+  .fan-card:nth-child(5) { --rot-start:  30deg; --rot-end:  32deg; z-index: 1; animation-delay: .45s; }
+
+  /* leve flutuação contínua depois da entrada */
+  .fan-card:nth-child(3) {
+    animation: fan-rise .7s cubic-bezier(.16,1,.3,1) .25s forwards,
+               fan-float 3.5s ease-in-out 1s infinite;
+  }
+  @keyframes fan-float {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50%     { transform: translateY(-6px) rotate(0deg); }
+  }
+
+  /* glow embaixo */
+  .fan-glow {
     position: absolute;
-    bottom: -10px; left: 50%;
+    bottom: -20px; left: 50%;
     transform: translateX(-50%);
-    width: 200px; height: 30px;
-    background: radial-gradient(ellipse, rgba(201,24,58,.35) 0%, transparent 70%);
-    filter: blur(8px);
-    z-index: 0;
-    animation: floor-pulse 14s linear infinite;
+    width: 180px; height: 30px;
+    background: radial-gradient(ellipse, rgba(201,24,58,.5) 0%, transparent 70%);
+    filter: blur(10px);
+    animation: glow-pulse 3s ease-in-out infinite;
   }
-  @keyframes floor-pulse {
-    0%,100% { opacity: .5; transform: translateX(-50%) scaleX(1); }
-    50%      { opacity: .9; transform: translateX(-50%) scaleX(1.15); }
-  }
-
-  /* entrada suave dos cards */
-  .ring-card { animation: card-enter .6s cubic-bezier(.16,1,.3,1) both; }
-  .ring-card:nth-child(1) { animation-delay: .1s; }
-  .ring-card:nth-child(2) { animation-delay: .2s; }
-  .ring-card:nth-child(3) { animation-delay: .3s; }
-  .ring-card:nth-child(4) { animation-delay: .4s; }
-  .ring-card:nth-child(5) { animation-delay: .5s; }
-  @keyframes card-enter {
-    from { opacity: 0; transform: translateZ(-120px) scale(.8); }
-    to   { opacity: 1; }
+  @keyframes glow-pulse {
+    0%,100% { opacity: .5; }
+    50%     { opacity: 1; }
   }
 
   /* ── CTA BTN ── */
@@ -418,28 +421,27 @@
     <span></span>
   </div>
 
-  <!-- MOCKUP 3D RING -->
+  <!-- MOCKUP FAN -->
   <div class="mockup-scene">
     <div class="mockup-badge">EXCLUSIVO</div>
-    <div class="mockup-ring" id="mockupRing">
-      <!-- os 5 cards são posicionados via JS para distribuir em círculo -->
-      <div class="ring-card">
-        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-11.png" alt="Edição 1" loading="eager" />
+    <div class="fan-wrap" id="fanWrap">
+      <div class="fan-card">
+        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-11.png" alt="Edição 1" />
       </div>
-      <div class="ring-card">
-        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-16.png" alt="Edição 2" loading="eager" />
+      <div class="fan-card">
+        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-16.png" alt="Edição 2" />
       </div>
-      <div class="ring-card">
-        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Feiticeira-16.jpg" alt="Edição 3" loading="eager" />
+      <div class="fan-card">
+        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Feiticeira-16.jpg" alt="Edição 3" />
       </div>
-      <div class="ring-card">
-        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Feiticeira-31.jpg" alt="Edição 4" loading="eager" />
+      <div class="fan-card">
+        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Feiticeira-31.jpg" alt="Edição 4" />
       </div>
-      <div class="ring-card">
-        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-13.png" alt="Edição 5" loading="eager" />
+      <div class="fan-card">
+        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-13.png" alt="Edição 5" />
       </div>
     </div>
-    <div class="mockup-floor"></div>
+    <div class="fan-glow"></div>
   </div>
 
   <a href="#oferta" class="cta-btn">
@@ -761,6 +763,15 @@
 </div>
 
 <script>
+  // ── Fan: dispara animações ao carregar ──
+  (function() {
+    const cards = document.querySelectorAll('.fan-card');
+    // pequeno delay para garantir que o browser já pintou
+    setTimeout(() => {
+      cards.forEach(c => c.classList.add('animate'));
+    }, 100);
+  })();
+
   // ── FAQ accordion ──
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
