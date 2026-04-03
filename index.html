@@ -103,24 +103,16 @@
     position: relative; z-index: 1;
     font-size: clamp(1rem, 3.5vw, 1.15rem);
     font-weight: 300; color: #c4adb3;
-    max-width: 340px; line-height: 1.65; margin-bottom: 40px;
+    max-width: 340px; line-height: 1.65; margin-bottom: 20px;
   }
   .subheadline strong { color: var(--text); font-weight: 600; }
-
-  .divider {
-    display: flex; align-items: center; gap: 10px;
-    width: 100%; max-width: 280px; margin: 0 auto 40px;
-    position: relative; z-index: 1;
-  }
-  .divider span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,24,58,.5), transparent); }
-  .divider i { font-style: normal; font-size: 18px; }
 
   /* ── MOCKUP FAN ── */
   .mockup-scene {
     position: relative; z-index: 1;
     width: 100%;
-    height: 460px;
-    margin: 0 auto 32px;
+    height: 430px;
+    margin: 0 auto 20px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -430,30 +422,24 @@
     Material raro, proibido e 100% original — só para quem tem coragem.
   </p>
 
-  <div class="divider">
-    <span></span>
-    <i>💋</i>
-    <span></span>
-  </div>
-
   <!-- MOCKUP FAN -->
   <div class="mockup-scene">
     <div class="mockup-badge">EXCLUSIVO</div>
     <div class="fan-wrap" id="fanWrap">
       <div class="fan-card">
-        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-11.png" alt="Edição 1" />
+        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/01.jpg" alt="Edição 1" />
       </div>
       <div class="fan-card">
-        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-16.png" alt="Edição 2" />
+        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-11.png" alt="Edição 2" />
       </div>
       <div class="fan-card">
-        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Feiticeira-16.jpg" alt="Edição 3" />
+        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-16.png" alt="Edição 3" />
       </div>
       <div class="fan-card">
-        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Feiticeira-31.jpg" alt="Edição 4" />
+        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Feiticeira-16.jpg" alt="Edição 4" />
       </div>
       <div class="fan-card">
-        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-13.png" alt="Edição 5" />
+        <img src="https://metodotripe.shop/wp-content/uploads/2026/04/Feiticeira-31.jpg" alt="Edição 5" />
       </div>
     </div>
     <div class="fan-glow"></div>
@@ -787,6 +773,7 @@
 
     // ── Alternância de imagens após 1.5s ──
     const images = [
+      'https://metodotripe.shop/wp-content/uploads/2026/04/01.jpg',
       'https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-11.png',
       'https://metodotripe.shop/wp-content/uploads/2026/04/Screenshot-16.png',
       'https://metodotripe.shop/wp-content/uploads/2026/04/Feiticeira-16.jpg',
